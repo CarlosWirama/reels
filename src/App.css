@@ -22,13 +22,3 @@
   align-items: center;
   justify-content: space-between;
 }
-
-.timeline-base {
-  background-color: #4b4b4b;
-  display: flex;
-  height: 80px;
-}
-
-.empty-gallery {
-  text-align: center;
-}

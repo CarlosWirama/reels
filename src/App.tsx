@@ -1,10 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import Timeline from './components/Timeline';
+import EmptyGallery from './components/EmptyGallery';
+
+import data from './data/data.json';
+
 import './App.css';
 
 const App: React.FC = () => {
+  const [clips, setClips] = useState([]);
+
   useEffect(() => {
     // call API here
-  });
+    // setClips(data)
+  }, []);
 
   return (
     <div className="App">
@@ -17,16 +26,13 @@ const App: React.FC = () => {
             <h4>Reel name</h4>
             <span>00:00:00:00</span>
           </div>
-          <div className="timeline-base">
-          </div>
+          <Timeline />
         </div>
         <div className="gallery">
           <div className="section-header">
             <h4>Gallery</h4>
           </div>
-          <div className="empty-gallery">
-            you don't have any supported video
-          </div>
+          {clips.length ? clips.map(() => (<EmptyGallery />)) : <EmptyGallery />}
         </div>
       </main>
     </div>
