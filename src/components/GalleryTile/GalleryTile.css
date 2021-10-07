@@ -4,3 +4,12 @@
   height: 80px;
   background-color: rgb(62, 125, 181);
 }
+
+.gallery-tile.disabled {
+  background-color: rgb(127, 158, 186);
+  color: rgb(72 72 72)
+}
+
+.gallery-tile:hover:not(.disabled) {
+  background-color: rgb(74 148 213);
+}

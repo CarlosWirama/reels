@@ -81,14 +81,21 @@ const App: React.FC = () => {
           <div className="section-header">
             <h4>Gallery</h4>
           </div>
-          {gallery.length ? gallery.map((clip, index) => (
-            <GalleryTile
-              key={index}
-              index={index}
-              clip={clip}
-              onSelect={onSelectClip}
-            />
-          )) : <EmptyGallery />}
+          {gallery.length ? gallery.map((clip, index) => {
+            const tileDisabled = selectedStandard !== null && (
+              clip.standard !== selectedStandard ||
+              clip.definition !== selectedDefinition
+            );
+              return (
+                <GalleryTile
+                  key={index}
+                  index={index}
+                  clip={clip}
+                  onSelect={onSelectClip}
+                  disabled={tileDisabled}
+                />
+              );
+            }) : <EmptyGallery />}
         </div>
       </main>
     </div>
