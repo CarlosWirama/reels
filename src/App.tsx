@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Timeline from './components/Timeline';
 import EmptyGallery from './components/EmptyGallery';
 import GalleryTile from './components/GalleryTile';
-import { verifyAddNewClip } from './helper';
+import { getTotalDuration, verifyAddNewClip } from './helper';
 
 import data from './data/data.json';
 
@@ -11,8 +11,6 @@ import Clip from './types/Clip';
 import { VideoDefinition, VideoStandard } from './types/VideoAttribute';
 
 import './App.css';
-
-type DurationArray = [number, number, number, number];
 
 const App: React.FC = () => {
   const [gallery, setGallery] = useState<Clip[]>([]);
@@ -59,10 +57,7 @@ const App: React.FC = () => {
     }
   }
 
-  const totalDuration = selectedClipIndexes.reduce<DurationArray>(
-    (total, clip) => total,
-    [0, 0, 0, 0]
-  );
+  const totalDuraion = getTotalDuration(selectedClipIndexes, gallery);
 
   return (
     <div className="App">
@@ -73,7 +68,7 @@ const App: React.FC = () => {
         <div className="reel">
           <div className="section-header">
             <h4>Reel name</h4>
-            <span data-testid='total-duration'>00:00:00:00</span>
+            <span data-testid='total-duration'>{totalDuraion}</span>
           </div>
           <Timeline gallery={gallery} selectedIndexes={selectedClipIndexes} />
         </div>

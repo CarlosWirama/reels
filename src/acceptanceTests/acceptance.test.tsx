@@ -35,6 +35,7 @@ describe('Acceptance tests', () => {
       expect(timelineTiles2).toHaveLength(1);
   
     });
+
     describe('When I try and add NTSC SD video clip', () => {
       test('user interface should prevent me from doing this action', () => {
         const { ntscSdClip } = createPalSdVideoReel();
@@ -66,8 +67,11 @@ describe('Acceptance tests', () => {
         act(() => {
           fireEvent.click(palSdClip3);
         });
-        const timelineTiles3 = screen.getAllByTestId('timeline-tile');
-        expect(timelineTiles3).toHaveLength(3);
+        const timelineTiles = screen.getAllByTestId('timeline-tile');
+        expect(timelineTiles).toHaveLength(3);
+
+        const totalDuration = screen.getByTestId('total-duration');
+        expect(totalDuration).toHaveTextContent('00:02:11:01');
       });
     });
   });
@@ -75,7 +79,30 @@ describe('Acceptance tests', () => {
   describe('Given I navigate to the user interface and create a NTSC SD Video Reel', () => {
     describe('When I add all the NTSC SD video clips', () => {
       test('the total duration displayed is 00:00:54:08', () => {
-        // 
+        render(<App />);
+        const [
+          _,
+          ntscSdClip1,
+          __,
+          ___,
+          ntscSdClip2,
+          ntscSdClip3,
+        ] = screen.getAllByTestId('gallery-tile');
+    
+        act(() => {
+          fireEvent.click(ntscSdClip1);
+        });
+
+        act(() => {
+          fireEvent.click(ntscSdClip2);
+        });
+
+        act(() => {
+          fireEvent.click(ntscSdClip3);
+        });
+
+        const totalDuration = screen.getByTestId('total-duration');
+        expect(totalDuration).toHaveTextContent('00:00:54:08');
       });
     });
   });
