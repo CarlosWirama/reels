@@ -76,21 +76,24 @@ const App: React.FC = () => {
           <div className="section-header">
             <h4>Gallery</h4>
           </div>
-          {gallery.length ? gallery.map((clip, index) => {
-            const tileDisabled = selectedStandard !== null && (
-              clip.standard !== selectedStandard ||
-              clip.definition !== selectedDefinition
-            );
-              return (
-                <GalleryTile
-                  key={index}
-                  index={index}
-                  clip={clip}
-                  onSelect={onSelectClip}
-                  disabled={tileDisabled}
-                />
+          <div className="gallery-tile-wrapper">
+            {gallery.length ? gallery.map((clip, index) => {
+              const tileDisabled = selectedStandard !== null && (
+                clip.standard !== selectedStandard ||
+                clip.definition !== selectedDefinition
               );
-            }) : <EmptyGallery />}
+                return (
+                  <GalleryTile
+                    key={index}
+                    index={index}
+                    clip={clip}
+                    onSelect={onSelectClip}
+                    disabled={tileDisabled}
+                    selected={selectedClipIndexes.includes(index)}
+                  />
+                );
+              }) : <EmptyGallery />}
+          </div>
         </div>
       </main>
     </div>

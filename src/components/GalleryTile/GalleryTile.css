@@ -3,6 +3,7 @@
   width: 120px;
   height: 80px;
   background-color: rgb(62, 125, 181);
+  padding: 8px 4px;
 }
 
 .gallery-tile.disabled {
@@ -10,6 +11,16 @@
   color: rgb(72 72 72)
 }
 
+.gallery-tile.selected {
+  background-color: rgb(0, 176, 15);
+  color: black;
+}
+
+
 .gallery-tile:hover:not(.disabled) {
   background-color: rgb(74 148 213);
+}
+
+.gallery-tile.selected:hover {
+  background-color: rgb(0 189 16);
 }

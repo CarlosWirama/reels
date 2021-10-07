@@ -7,6 +7,7 @@ interface GalleryTileProps {
   index: number;
   onSelect: (clipIndex: number) => void;
   disabled?: boolean;
+  selected?: boolean;
 }
 
 const GalleryTile: React.FC<GalleryTileProps> = ({
@@ -14,10 +15,13 @@ const GalleryTile: React.FC<GalleryTileProps> = ({
   index,
   onSelect,
   disabled,
+  selected,
 }) => (
   <div
     onClick={() => onSelect(index)}
-    className={`gallery-tile ${disabled ? 'disabled' : ''}`}
+    className={
+      `gallery-tile ${disabled ? 'disabled' : ''} ${selected ? 'selected' : ''}`
+    }
     data-testid="gallery-tile"
   >
     {clip.name}

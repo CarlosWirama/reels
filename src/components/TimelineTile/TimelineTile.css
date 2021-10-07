@@ -3,4 +3,7 @@
   background-color: #828282;
   display: flex;
   height: 80px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  align-items: center;
 }
