@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
 
 const App: React.FC = () => {
+  useEffect(() => {
+    // call API here
+  });
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h2>Show Reels</h2>
       </header>
+      <main>
+        <div className="reel">
+          <div className="section-header">
+            <h4>Reel name</h4>
+            <span>00:00:00:00</span>
+          </div>
+          <div className="timeline-base">
+          </div>
+        </div>
+        <div className="gallery">
+          <div className="section-header">
+            <h4>Gallery</h4>
+          </div>
+          <div className="empty-gallery">
+            you don't have any supported video
+          </div>
+        </div>
+      </main>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import App from '../App';
+
 describe('Acceptance tests', () => {
 
   describe('Given I navigate to the user interface and create a PAL SD Video Reel', () => {
