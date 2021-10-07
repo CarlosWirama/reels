@@ -1,4 +1,5 @@
-.clip-tile {
+.gallery-tile {
+  margin: 6px 4px;
   width: 120px;
   height: 80px;
   background-color: rgb(62, 125, 181);
