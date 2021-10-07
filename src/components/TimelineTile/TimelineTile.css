@@ -1,0 +1,6 @@
+.timeline-tile {
+  border: 1px solid rgb(194, 194, 194);
+  background-color: #828282;
+  display: flex;
+  height: 80px;
+}
