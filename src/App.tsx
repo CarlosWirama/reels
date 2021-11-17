@@ -14,6 +14,7 @@ import './App.css';
 
 const App: React.FC = () => {
   const [gallery, setGallery] = useState<Clip[]>([]);
+  const [searchText, setSearchText] = useState('');
   const [selectedClipIndexes, setSelectedClipIndexes] = useState<number[]>([]);
   const [
     selectedStandard,
@@ -55,9 +56,21 @@ const App: React.FC = () => {
     if (allowed) {
       addOrRemoveClip(clipIndex);
     }
-  }
+  };
+
+  const onChangeSearch = (value: string) => {
+    setSearchText(value);
+  };
 
   const totalDuraion = getTotalDuration(selectedClipIndexes, gallery);
+
+  const displayedTiles = gallery.filter(({ name }) => {
+    console.log({searchText, name})
+    return searchText
+    ? name.toLowerCase().includes(searchText)
+    : true
+  });
+  console.log({displayedTiles})
 
   return (
     <div className="App">
@@ -76,8 +89,14 @@ const App: React.FC = () => {
           <div className="section-header">
             <h4>Gallery</h4>
           </div>
+          <div>
+            <input
+              value={searchText}
+              onChange={e => onChangeSearch(e.target.value)}
+            />
+          </div>
           <div className="gallery-tile-wrapper">
-            {gallery.length ? gallery.map((clip, index) => {
+            {displayedTiles.length ? displayedTiles.map((clip, index) => {
               const tileDisabled = selectedStandard !== null && (
                 clip.standard !== selectedStandard ||
                 clip.definition !== selectedDefinition
@@ -85,11 +104,10 @@ const App: React.FC = () => {
                 return (
                   <GalleryTile
                     key={index}
-                    index={index}
                     clip={clip}
                     onSelect={onSelectClip}
                     disabled={tileDisabled}
-                    selected={selectedClipIndexes.includes(index)}
+                    selected={selectedClipIndexes.includes(clip.id)}
                   />
                 );
               }) : <EmptyGallery />}

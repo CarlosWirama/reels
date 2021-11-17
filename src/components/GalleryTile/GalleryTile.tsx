@@ -4,7 +4,6 @@ import './GalleryTile.css';
 
 interface GalleryTileProps {
   clip: Clip;
-  index: number;
   onSelect: (clipIndex: number) => void;
   disabled?: boolean;
   selected?: boolean;
@@ -12,13 +11,12 @@ interface GalleryTileProps {
 
 const GalleryTile: React.FC<GalleryTileProps> = ({
   clip,
-  index,
   onSelect,
   disabled,
   selected,
 }) => (
   <div
-    onClick={() => onSelect(index)}
+    onClick={() => onSelect(clip.id)}
     className={
       `gallery-tile ${disabled ? 'disabled' : ''} ${selected ? 'selected' : ''}`
     }
